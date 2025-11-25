@@ -3,6 +3,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # 默认使用清华镜像源（适合国内用户）
+        # 如果在海外，可设置 USE_PYPI_MIRROR=false 使用官方 PyPI 源
+        USE_PYPI_MIRROR: "${USE_PYPI_MIRROR:-true}"
     ports:
       - "${PORT:-8001}:${PORT:-8001}"  # API port
       - "3000:3000"  # Next.js port
